@@ -18,7 +18,7 @@ I took an image of the 85C1 faceplate I had and whipped up a quick-and-dirty sca
 
 ![meters-front](https://github.com/phreakmonkey/KrellMeter/blob/master/misc/meters-front.png)
 
-faceplate/ contains the faceplate images I used.  Be creative!
+**faceplate/** contains the faceplate images I used.  Be creative!
 
 
 ## Software
@@ -36,7 +36,7 @@ This is the client I run in both Windows 10 and Ubuntu Linux.  It looks for "kre
 
 When the client first starts it sweeps from 0-100, stopping momentarily at 25%, 50%, 75%, and 100%.  You can use this to gauge whether you need to increase/decrease "max" for either meter. 
 
-(Alternatively, connect to the Pro Micro from a terminal program and just send A200<enter> and see what it reads.  Adjust the number up or down to find the top for that particular meter.)
+Alternatively, connect to the Pro Micro from a terminal program and just send A200<enter> or B200<enter> and see what it reads.  Adjust the number up or down to find the top for that particular meter, then update the ini file.
 
 One huge caveat:  I'm getting the GPU utlization from the Nvidia "nvidia-smi" client on both platforms.  If you don't have an Nvidia GPU (or the Nvidia client library installed) then this won't work for you. 
 
@@ -44,7 +44,7 @@ TODO: Make the client more configurable for differing configurations.
 
 #### binaries/
 
-Contains pre-compiled binaries for the Linux AMD64 platform and Windows 64-bit platforms.  If you use these be sure to grab the krellmeter.ini file from client/ and taylor it for your configuration.  (E.g. port=COM3 or similar for Windows.)
+Contains pre-compiled binaries for the Linux AMD64 platform and Windows 64-bit platforms.  If you use these be sure to grab the krellmeter.ini file from client/ and tailor it for your configuration.  (E.g. port=COM3 or similar for Windows.)
 
 I used [NSSM](https://nssm.cc/download) to make krellmeter.exe into a service on Windows 10, but any method of running it in the background should work since it doesn't require any special permissions.
 
