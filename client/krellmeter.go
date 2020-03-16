@@ -59,24 +59,24 @@ func parse_nvidia(buf []byte, l int) int {
 }
 
 func main() {
-  var gpu     int = 0
-  var inifile string = "krellmeter.ini"
+	var gpu     int = 0
+	var inifile string = "krellmeter.ini"
 
-  if len(os.Args) > 1 {
-    inifile = os.Args[1]
-  }
-  cfg, err := ini.Load(inifile)
-  if err != nil {
-    fmt.Printf("Fail to read ini file: %v", err)
-    os.Exit(1)
-  }
+	if len(os.Args) > 1 {
+		inifile = os.Args[1]
+	}
+	cfg, err := ini.Load(inifile)
+	if err != nil {
+		fmt.Printf("Fail to read ini file: %v", err)
+		os.Exit(1)
+	}
 
-  SERIALPORT = cfg.Section("serial").Key("port").String()
-  SERIALBAUD = cfg.Section("serial").Key("baud").MustInt()
-  AMAX = float64(cfg.Section("meter1").Key("max").MustInt(225))
-  BMAX = float64(cfg.Section("meter2").Key("max").MustInt(225))
-  afactor = AMAX / 100.0
-  bfactor = BMAX / 100.0
+	SERIALPORT = cfg.Section("serial").Key("port").String()
+	SERIALBAUD = cfg.Section("serial").Key("baud").MustInt()
+	AMAX = float64(cfg.Section("meter1").Key("max").MustInt(225))
+	BMAX = float64(cfg.Section("meter2").Key("max").MustInt(225))
+	afactor = AMAX / 100.0
+	bfactor = BMAX / 100.0
 
 	c := &serial.Config{Name: SERIALPORT, Baud: SERIALBAUD, ReadTimeout: time.Millisecond * 5}
 	s, err := serial.OpenPort(c)
