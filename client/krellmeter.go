@@ -59,7 +59,7 @@ func parse_nvidia(buf []byte, l int) int {
 }
 
 func main() {
-	var gpu     int = 0
+  var gpu     int = 0
   var inifile string = "krellmeter.ini"
 
   if len(os.Args) > 1 {
