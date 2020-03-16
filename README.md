@@ -13,27 +13,27 @@ output of a microcontroller, I knew immediately what I wanted to do.
 - Arduino Pro Micro 3.3v [SparkFun](https://www.sparkfun.com/products/12587)
 
 Here's the schematic for wiring the two meters to the Pro Micro:
-![schem]()
+![schem](https://github.com/phreakmonkey/KrellMeter/blob/master/misc/KrellMeter-schem.png)
 
-![meters-rear]()
+![meters-rear](https://github.com/phreakmonkey/KrellMeter/blob/master/misc/meters-back.png)
 
 I took an image of the 85C1 faceplate I had and whipped up a quick-and-dirty scale in GIMP to replace it with.  I then printed it on my laser printer and just gued it to the back of the existing faceplate with an Elmer's Glue stick.  The result is pretty convincing:
 
-![meters-front]()
+![meters-front](https://github.com/phreakmonkey/KrellMeter/blob/master/misc/meters-front.png)
 
 faceplate/ contains the faceplate images I used.  Be creative!
 
 
 ## Software
 
-### arduino/main.cpp
+#### arduino/main.cpp
 
 This is the source for the Pro Micro firmware.  It's very simple.  It listens
 on the serial port for a string starting with A or B followed by a number and sets the PWM output of pins 5 and 6 respectively to the value of the number.
 
 E.g. "A0" will set the PWM output on pin 5 to 0, whereas "A255" will set the PWM output on pin 5 to 255.
 
-### client/krellmeter.go
+#### client/krellmeter.go
 
 This is the client I run in both Windows 10 and Ubuntu Linux.  It looks for "krellmeter.ini" in the current directory unless you specify a path to an INI file on the command line.  The options are fairly self-explanitory.  The "max" parameter for each meter lets you tweak what PWM output makes the meter read "100%".  
 
