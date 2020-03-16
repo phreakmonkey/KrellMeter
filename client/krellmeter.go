@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-  "gopkg.in/ini.v1"
+	"gopkg.in/ini.v1"
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/tarm/serial"
 )
