@@ -6,7 +6,8 @@
 const uint8_t maxChars = 20;
 char receivedChars[maxChars];   // an array to store the received data
 boolean newData = false;
-
+unsigned long lastwrite = millis();
+bool idle = false;
 
 void recvData() {
     static byte ndx = 0;
@@ -36,6 +37,8 @@ void recvData() {
 void updateMeters() {
     int newVal = 0;
     if (newData == true) {
+      lastwrite = millis();
+      idle = false;
       Serial.println("Got data");
       newVal = atoi(receivedChars+1);
       if (receivedChars[0] == 'A') {
@@ -70,4 +73,9 @@ void setup() {
 void loop() {
   recvData();
   updateMeters();
+  if ((!idle) && millis() - lastwrite > 5000) {
+    idle = true;
+    analogWrite(pinA, 0);
+    analogWrite(pinB, 0);
+  }
 }
