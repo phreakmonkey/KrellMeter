@@ -47,12 +47,9 @@ func parse_nvidia(buf []byte, l int) int {
 	if l > 100 {
 		if buf[0] == 0x7C && buf[1] == 0x20 {
 			s := strings.Split(string(buf), "\n")
-			switch s[1][60] {
-			case 0x20:
-				pct, _ = strconv.Atoi(s[1][61:63])
-			case 0x31:
-				pct = 100
-			}
+			pctstr := strings.Split(s[1], "|")
+			pct, _ = strconv.Atoi(strings.Trim(pctstr[3][:strings.IndexByte(pctstr[3], '%')], " "))
+			// fmt.Printf("%d\n", pct)
 		}
 	}
 	return pct
